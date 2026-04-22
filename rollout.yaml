@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: online-shop
+spec:
+  replicas: 3
+
+  strategy:
+    blueGreen:
+      activeService: shop-active
+      previewService: shop-preview
+      autoPromotionEnabled: true
+      scaleDownDelaySeconds: 60
+
+  selector:
+    matchLabels:
+      app: online-shop
+
+  template:
+    metadata:
+      labels:
+        app: online-shop
+
+    spec:
+      containers:
+      - name: shop
+        image: <ECR_IMAGE>:latest
+        ports:
+        - containerPort: 3000
+
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 10
