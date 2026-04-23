@@ -6,6 +6,7 @@ metadata:
     argocd-image-updater.argoproj.io/image-list: cart=626072240565.dkr.ecr.us-west-2.amazonaws.com/retail-store-cart
     argocd-image-updater.argoproj.io/update-strategy: latest
     argocd-image-updater.argoproj.io/write-back-method: git
+
 spec:
   replicas: 3
 
@@ -26,6 +27,10 @@ spec:
         app: online-shop
 
     spec:
+      # ✅ FIX: ECR authentication added
+      imagePullSecrets:
+        - name: regcred
+
       containers:
       - name: shop
         image: 626072240565.dkr.ecr.us-west-2.amazonaws.com/retail-store-cart
