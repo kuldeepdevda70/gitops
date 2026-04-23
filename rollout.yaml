@@ -33,7 +33,7 @@ spec:
 
       containers:
       - name: shop
-        image: 626072240565.dkr.ecr.us-west-2.amazonaws.com/retail-store-cart
+        image: 626072240565.dkr.ecr.us-west-2.amazonaws.com/retail-store-cart:latest
         ports:
         - containerPort: 3000
 
