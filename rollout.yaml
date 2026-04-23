@@ -2,6 +2,10 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: online-shop
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: cart=626072240565.dkr.ecr.us-west-2.amazonaws.com/retail-store-cart
+    argocd-image-updater.argoproj.io/update-strategy: latest
+    argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   replicas: 3
 
@@ -24,7 +28,7 @@ spec:
     spec:
       containers:
       - name: shop
-        image: 501673236830.dkr.ecr.us-west-2.amazonaws.com/demo-private/ui:<tag>
+        image: 626072240565.dkr.ecr.us-west-2.amazonaws.com/retail-store-cart
         ports:
         - containerPort: 3000
 
