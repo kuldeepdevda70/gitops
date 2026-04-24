@@ -39,7 +39,7 @@ spec:
 
       containers:
       - name: shop
-        image: 501673236830.dkr.ecr.us-west-2.amazonaws.com/demo-private/ui:f1cb2da5588ac8bfeeeeb97b5c0ce8c15abddefd
+        image: 501673236830.dkr.ecr.us-west-2.amazonaws.com/demo-private/ui:eea72f07af37e1ac6c4d6fec3d8714110314b4a9
         ports:
         - containerPort: 3000
 
