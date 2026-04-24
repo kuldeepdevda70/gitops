@@ -6,12 +6,23 @@ metadata:
 spec:
   replicas: 3
 
+  # strategy:
+  #   blueGreen:
+  #     activeService: shop-active
+  #     previewService: shop-preview
+  #     autoPromotionEnabled: true
+  #     scaleDownDelaySeconds: 60
+
   strategy:
-    blueGreen:
-      activeService: shop-active
-      previewService: shop-preview
-      autoPromotionEnabled: true
-      scaleDownDelaySeconds: 60
+   canary:
+    steps:
+      - setWeight: 20
+      - pause: {}
+
+      - setWeight: 50
+      - pause: {}
+
+      - setWeight: 100
 
   selector:
     matchLabels:
